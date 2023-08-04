@@ -1,0 +1,85 @@
+.infoApp{
+  display: flex;
+  width: 1280px;
+  height: 720px;
+}
+
+.sidebar{
+  width: 256px;
+  height: 2100px;
+  background-color: #F6F7F8;
+}
+.menu{
+  margin: 5%;
+}
+
+.title{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.infomations{
+  display: flex;
+  flex-direction: column;
+  border: 1px 0 1px 0 solid gray;
+  margin: 2%;
+}
+.calendar{
+  height: 15%;
+}
+
+.name{
+  width: 140px;
+  height: 22px;
+}
+
+.infoName{
+  width: 943px;
+  height: 510px;
+}
+
+.infoName{
+  width: 40%;
+  display: flex;
+  margin-right: 64px;
+  align-items: center;
+}
+.info2Input{
+  width: 160px;
+  height: 34px;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  width: 943px;
+  height: 56px;
+  /* margin: ; */
+}
+
+.button{
+  display: flex;
+  justify-content: end;
+}
+
+.submit{
+  background-color: #024EEE;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  width: 87px;
+  height: 40px;
+}
+.submit:hover{ 
+  background-color: #003AD6;
+}
+
+.react-datepicker__header {
+  background-color: #ffffff !important;
+  border-bottom: 0 !important;
+}
+
+.react-datepicker__day--selected{
+  border-radius: 50% !important;
+  background-color: #024EEE !important;
+}
