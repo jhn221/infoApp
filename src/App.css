@@ -170,3 +170,7 @@ input[id="check1"]:checked {
   background-color: #FAFBFC;
   border: 2px solid #BEBEBE;
 }
+
+.react-datepicker__day--outside-month {
+  font-weight: 200;
+}

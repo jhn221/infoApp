@@ -19,6 +19,7 @@ function App() {
   const [date, setDate] = useState('');
   const [info2Data, setInfo2Data] = useState('');
   const [info4Data, setInfo4Data] = useState('');
+  
 
   const handleCheckboxChange = (id) => {
     setCheckboxes((prevCheckboxes) =>
@@ -163,15 +164,25 @@ function App() {
                   style={{
                     margin: 10,
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "space-around",
                   }}
                 >
-                  <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+                  <button 
+                  onClick={decreaseMonth} 
+                  disabled={prevMonthButtonDisabled} 
+                  style={{
+                    backgroundColor:"white",
+                    border:0,
+                  }}>
                     {"<"}
                   </button>
                   <select
                     value={date.getFullYear()}
                     onChange={({ target: { value } }) => changeYear(value)}
+                    style={{
+                      width:"100px",
+                      heigth:"34px"
+                    }}
                   >
                     {years.map((option) => (
                       <option key={option} value={option}>
@@ -185,6 +196,10 @@ function App() {
                     onChange={({ target: { value } }) =>
                       changeMonth(months.indexOf(value))
                     }
+                    style={{
+                      width:"72px",
+                      heigth:"34px"
+                    }}
                   >
                     {months.map((option) => (
                       <option key={option} value={option}>
@@ -193,7 +208,13 @@ function App() {
                     ))}
                   </select>
 
-                  <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                  <button 
+                    onClick={increaseMonth} 
+                    disabled={nextMonthButtonDisabled}
+                    style={{
+                      backgroundColor:"white",
+                      border:0,
+                    }}>
                     {">"}
                   </button>
                 </div>
