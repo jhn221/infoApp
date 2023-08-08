@@ -11,9 +11,9 @@ function App() {
 
   const [data, setData] = useState();
   const [checkboxes, setCheckboxes] = useState([
-    { id: 1, label: '선택 1', checked: false, value: "" },
-    { id: 2, label: '선택 2', checked: false, value: "" },
-    { id: 3, label: '선택 3', checked: false, value: "선택시 텍스트가 표시됩니다" },
+    { id: 1, label: '선택1', checked: false, value: "" },
+    { id: 2, label: '선택2', checked: false, value: "" },
+    { id: 3, label: '선택3', checked: false, value: "* 선택시 텍스트가 표시됩니다" },
   ]);
   const [selectedOption, setSelectedOption] = useState('');
   const [date, setDate] = useState('');
@@ -28,7 +28,6 @@ function App() {
     );
   };
   
-  console.log(checkboxes)
   const handleRadioButtonChange = (value) => {
     setSelectedOption(value);
   };
@@ -41,14 +40,22 @@ function App() {
       setData(res.data.data)
       const receivedDate = res.data.data ? new Date(res.data.data.date) : new Date();
       setDate(receivedDate);
-      const initialSelectedOption = res.data.data ? res.data.data.selectedOption : null;
+      const initialSelectedOption = res.data.data ? res.data.data.info5 : null;
       setSelectedOption(initialSelectedOption);
+      const initialCheckboxValues = res.data.data ? res.data.data.info6 : null;
+      console.log(initialCheckboxValues)
+      const updatedCheckboxes = checkboxes.map(checkbox =>
+        initialCheckboxValues.includes(checkbox.label)
+          ? { ...checkbox, checked: true }
+          : checkbox
+      );
+      setCheckboxes(updatedCheckboxes);
     })
     .catch((err) => {
       console.log(err);
     });
   },[])
-console.log(data)
+  
   const infoSubmit = () => {
     console.log(date, info2Data, info4Data, selectedOption)
     axios(`https://api-jobtest.json2bot.chat/test`, {
@@ -65,11 +72,12 @@ console.log(data)
       console.log(res)
    })
    .catch((err) => {
-     console.log(err);
+      if(err.response.status === 400) alert('400 error가 발생했습니다')
+      if(err.response.status === 500) alert('500 error가 발생했습니다')
+      else console.log(err)
    });
    };
 
-   const [startDate, setStartDate] = useState(new Date());
    const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - 1990 + 1 }, (_, index) => 1990 + index);
 
@@ -95,6 +103,7 @@ console.log(data)
       </div>
       <div className='infomations'>
         <div className='title'>타이틀</div>
+        <div className='line'></div>
         <div className='info'>
           <div className='infoName'>
             <div className='name'>정보1</div>
@@ -196,35 +205,38 @@ console.log(data)
           <div className='infoName'>
             <div className='name'>정보5</div>
             <RadioButton
-                label="선택 1"
-                checked={selectedOption === 'option1'}
-                onChange={() => handleRadioButtonChange('option1')}
+                label="선택1"
+                checked={selectedOption === '선택1'}
+                onChange={() => handleRadioButtonChange('선택1')}
                 />
               <RadioButton
-                label="선택 2"
-                checked={selectedOption === 'option2'}
-                onChange={() => handleRadioButtonChange('option2')}
+                label="선택2"
+                checked={selectedOption === '선택2'}
+                onChange={() => handleRadioButtonChange('선택2')}
                 />
               <RadioButton
-                label="선택 3"
-                checked={selectedOption === 'option3'}
-                onChange={() => handleRadioButtonChange('option3')}
+                label="선택3"
+                checked={selectedOption === '선택3'}
+                onChange={() => handleRadioButtonChange('선택3')}
               />
-              {selectedOption === 'option3' && checkboxes.find(checkbox => checkbox.id === 3)?.value}
-            {checkboxes === true ? <div>{checkboxes.value}</div> : null}
           </div> 
+            <div className='value'>
+                {selectedOption === '선택3' && checkboxes.find(checkbox => checkbox.id === 3)?.value}
+                {checkboxes === true ? <div >{checkboxes.value}</div> : null}
+            </div>
           </div>
           <div className='info'>
           <div className='infoName'>
             <div className='name'>정보6</div>
             {checkboxes.map((checkbox) => (
-              <label>
+              <label id="check1">
                 <input type="checkbox" checked={checkbox.checked} onChange={() => handleCheckboxChange(checkbox.id)} />
                 {checkbox.label}
               </label>
             ))}
           </div>  
           </div>
+          <div className='line'></div>
           <div className='button'>
             <button onClick={infoSubmit} className='submit'>저장</button>
           </div>
