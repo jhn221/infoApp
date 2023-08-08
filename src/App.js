@@ -31,7 +31,8 @@ function App() {
   const handleRadioButtonChange = (value) => {
     setSelectedOption(value);
   };
-
+  const dateNow = new Date();
+  const today = dateNow.toISOString().slice(0, 10);
   useEffect(() => {
     axios(`https://api-jobtest.json2bot.chat/test`, {
      method:'get', 
@@ -145,6 +146,7 @@ function App() {
               locale={ko}
               dateFormat="yyyy.MM.dd" // 날짜 형식 설정
               className="input-datepicker" // 클래스 명 지정 css주기 위해
+              defaultValue={today}
               closeOnScroll={true} // 스크롤을 움직였을 때 자동으로 닫히도록 설정 기본값 false
               selected={date} // value  // 날짜를 선택하였을 때 실행될 함수
               onChange={(date) => setDate(date)}
