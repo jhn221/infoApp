@@ -17,25 +17,25 @@ const Sidebar = () => {
   return (
       <div className='sidebar'>
       {/* <div className={`sidebar ${menuOpen ? 'open' : ''}`}> */}
-      <div>
-        <div>대매뉴</div>
+      <div className='sidebarTitle'>
+        <div className='sidebarTitleName'>대매뉴</div>
         {menuOpen ? (<GoTriangleUp onClick={() => toggleMenu()}/>) :
           (<GoTriangleDown onClick={() => toggleMenu()}/>)}
       </div>
       {menuOpen ? (
         <div>
-          <div>소메뉴</div>
-          <div>소메뉴</div>
+          <div className='sidebarTitleName2'>소메뉴</div>
+          <div className='sidebarTitleName2'>소메뉴</div>
         </div>):null}
-        <div>
-        <div>대매뉴</div>
+        <div className='sidebarTitle'>
+        <div className='sidebarTitleName'>대매뉴</div>
         {submenuOpen ? (<GoTriangleUp onClick={() => subtoggleMenu()}/>) :
           (<GoTriangleDown onClick={() => subtoggleMenu()}/>)}
       </div>
       {submenuOpen ? (
         <div>
-          <div>소메뉴</div>
-          <div>소메뉴</div>
+          <div className='sidebarTitleName2'>소메뉴</div>
+          <div className='sidebarTitleName2'>소메뉴</div>
         </div>):null}
     </div>
   );
